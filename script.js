@@ -3,6 +3,15 @@ let entryCount = 0;
 function addEntry(inputvalue, listvalue) {
     const text = document.getElementById(inputvalue).value; 
     const box = document.getElementById(listvalue);
+    const errorBox = document.getElementById(`displayError${listvalue.charAt(4)}`);
+
+    // Empty the input on click
+    errorBox.innerHTML = "";
+
+    if(text == "") {
+        errorBox.innerHTML = "Invalid input";
+        return;
+    }
 
     box.innerHTML += `<li id="${entryCount}">` + text + ` <button id="${entryCount}" onclick="removeEntry(${entryCount.toString()})">Remove</button>` + '</li>';
     entryCount += 1;
@@ -13,7 +22,6 @@ function addEntry(inputvalue, listvalue) {
 
 function removeEntry(id) {
     const elementToRemove = document.getElementById(id);
-
     elementToRemove.remove();
 }
 
