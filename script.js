@@ -1,19 +1,32 @@
 let entryCount = 0; 
 
 function addEntry(inputvalue, listvalue) {
-    const text = document.getElementById(inputvalue).value; 
-    const box = document.getElementById(listvalue);
-    const errorBox = document.getElementById(`displayError${listvalue.charAt(4)}`);
+    const textInput = document.getElementById(inputvalue).value; 
+    const listValue = document.getElementById(listvalue);
+    
+    // Set up the invalid input error message if required
+    const errorSpan = document.createElement('span');
+    errorSpan.setAttribute("id", `errorMessage${listvalue.charAt(4)}`);
 
-    // Empty the input on click
-    errorBox.innerHTML = "";
+    //Get the display error element
+    const existingErrorElement = document.getElementById(`displayError${listvalue.charAt(4)}`);
 
-    if(text == "") {
-        errorBox.innerHTML = "Invalid input";
+    // Remove invalid input error if it is already showing
+    if (existingErrorElement.hasChildNodes()){
+        const existingError = document.getElementById(`errorMessage${listvalue.charAt(4)}`);
+        existingError.remove();
+    }
+
+    // If the input is empty/null, display error and return
+    if(textInput == "") {
+        const errorMessage = document.createTextNode("Invalid input");
+        errorSpan.append(errorMessage);
+
+        existingErrorElement.append(errorSpan);
         return;
     }
 
-    box.innerHTML += `<li id="${entryCount}">` + text + ` <button id="${entryCount}" onclick="removeEntry(${entryCount.toString()})">Remove</button>` + '</li>';
+    listValue.innerHTML += `<li id="${entryCount}">` + textInput + ` <button id="${entryCount}" onclick="removeEntry(${entryCount.toString()})">Remove</button>` + '</li>';
     entryCount += 1;
 
     // Clear the text from input box after submitting

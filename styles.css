@@ -17,12 +17,12 @@ body {
 }
 
 #container {
-    max-width: 1200px; 
+    max-width: 1600px; 
     width: 80%; 
     height: 400px;
     margin: 0 auto; 
     display: grid; 
-    grid-template-columns: 50px minmax(auto,600px) minmax(auto,600px); 
+    grid-template-columns: 50px minmax(auto,800px) minmax(auto,800px); 
     grid-template-rows: 30px auto auto; 
 }
 
@@ -34,16 +34,24 @@ body {
 #urgent, #not-urgent {
     border: black 1px solid;
     text-align: center; 
+    font-weight: bold; 
     position: relative;
-    max-width: 600px;
+    max-width: 800px;
 }
 
 #important, #not-important {
     border: black 1px solid; 
     padding-top: 100px;
     padding-bottom: 10px;
+    font-weight: bold; 
 }
 
 .rotate {
     transform: rotate(-90deg);
+}
+
+#errorMessage1, #errorMessage2, #errorMessage3, #errorMessage4 {
+    background-color: rgb(194, 89, 89); 
+    border:rgb(105, 0, 0) 1px solid; 
+    padding: 2px; 
 }
